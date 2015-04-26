@@ -2,6 +2,7 @@
 
 $projectDir = realpath(dirname(__FILE__) . '/../../');
 $authDir = $projectDir . '/src/Common/Authentication';
+$registerDir = $projectDir . '/src/Common/Register';
 $commonDir = $projectDir . '/src/Common';
 $controllersDir = $projectDir . '/src/Controllers';
 $configDir = $projectDir . '/src/Config';
@@ -22,6 +23,7 @@ $config = [
         ],
         'dir'          => [
             'authentication' => $authDir,
+            'register'       => $registerDir,
             'common'         => $commonDir,
             'controllers'    => $controllersDir,
             'config'         => $configDir,
