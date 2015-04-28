@@ -12,17 +12,16 @@ class SQLiteAuth implements IAuthentication
 			$this->password = $password;
 		}
 		$db = new SQLite3('../src/Common/login.db');
-		$q = $db->querySingle("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='user';");
-		if ($q === 0){
-			$db->exec("CREATE TABLE user (username VARCHAR, password VARCHAR); INSERT INTO user (username, password) VALUES ('joshuakimble','pass');");
-        }
+		
 		$q = $db->querySingle("SELECT count(*) FROM user WHERE username='$username' AND password='$password'");
 		if ($q > 0) {
+			$result = $db->querySingle("SELECT fName, lName FROM user WHERE username='$username' AND password='$password'", SQLITE_ASSOC);
 			$this->status = ACTIVE;
 			$this->lastLogin = time();
-			return TRUE;
+			$returnVal = array("boolVal" => TRUE, "body" => $result);
+			return json_encode($returnVal);
 		}
 		$this->status = NON_ACTIVE;
-		return FALSE;
+		return  '{"boolVal":FALSE}';
 	}
 }

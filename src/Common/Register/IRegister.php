@@ -9,10 +9,7 @@
  * $LastChangedDate$
  * $LastChangedBy$
  */
-
 namespace Common\Register;
-
-
 interface IRegister
 {
     /**
@@ -24,5 +21,5 @@ interface IRegister
      *
      * @access public
      */
-    public function registerUser($username, $email, $fName, $lName, $password);
+    public function registerUser($username, $email, $fName, $lName, $password, $twitter_username);
 }
