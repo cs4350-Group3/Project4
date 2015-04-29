@@ -67,6 +67,15 @@ $app->group('/api',function () use ($app){
         }
         return;
     });
+    $app->post('/twitter',function () use ($app) {
+        $jsonBody = json_decode($app->request()->getBody());
+        $twitterAuth = new \Common\Authentication\TwitterAuth();
+        //Get URL approved by Twitter to auth an account
+        $twitterAuth->setTwitterID($jsonBody->{'twitter_username'}); 
+        $twitterAuthUrl = $twitterAuth->authenticate($jsonBody->{'username'}, $jsonBody->{'password'}); 
+        //Now auth the user using the URL
+        echo $twitterAuthUrl;
+    });
 });
 
 $app->run();
